@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    *{margin:0;padding:0;}
+    body{
+        overflow: hidden;
+    }
+    img{
+        width: 600px;
+        height: 350px;
+    }
+    h2{
+        position: absolute;
+        bottom:0;
+        left:0;
+    }
+    </style>
+</head>
+<body>
+    
+<img src="images/loading/loading.png" alt="">
+
+<h2 class="text" id="text">检查软件更新</h2>
+
+<script>
+let text = document.getElementById('text');
+electron.ipcRenderer.on('main-to-renderer',(e, msg)=>{
+    if( msg.name =='download-progress'){
+        text.innerHTML = msg.data ? msg.msg + msg.data.toFixed(2) + '%' : msg.msg
+    }
+    //渲染进程 通信 主进程
+    electron.ipcRenderer.invoke('renderer-to-main',{
+		name: msg.name
+	})
+})
+</script>
+
+</body>
+</html>

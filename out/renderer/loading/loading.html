@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    *{margin:0;padding:0;}
+    body{
+        overflow: hidden;
+    }
+    img{
+        width: 600px;
+        height: 350px;
+    }
+    </style>
+</head>
+<body>
+    
+<img src="images/loading/loading.png" alt="">
+
+<div class="">进度条：</div>
+
+<script>
+electron.ipcRenderer.on('main-to-renderer',(e, msg)=>{
+    //渲染进程 通信 主进程
+    electron.ipcRenderer.invoke('renderer-to-main',{
+		name: msg.name
+	})
+})
+</script>
+
+</body>
+</html>

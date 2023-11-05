@@ -1,0 +1,12 @@
+
+.down[data-v-c5bc723e]:hover { 
+    background-color: var(--hover-color);
+}
+header[data-v-c5bc723e]{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    padding:0 10px;
+    background-color: #ccc;
+}
